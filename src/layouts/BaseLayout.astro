@@ -1,0 +1,20 @@
+---
+// src/layouts/BaseLayout.astro
+import Header from "../components/Header.astro";
+---
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title><slot name="title" /></title>
+    <script src="/theme-init.js" inline></script>
+      <link rel="stylesheet" href="/style/global.css" />
+  </head>
+  <body class="font-sans bg-peach-50 dark:bg-gray-900">
+    <Header />
+    <main class="pt-16">
+      <slot /> <!-- 各ページの本文がここに表示される -->
+    </main>
+  </body>
+</html>

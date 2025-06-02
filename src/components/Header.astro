@@ -1,0 +1,38 @@
+---
+// src/components/Header.astro
+---
+<header class="fixed top-0 left-0 w-full bg-peach-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 z-50">
+  <div class="mx-auto max-w-5xl px-4 py-3 flex items-center justify-between">
+    <!-- 左：サイトロゴ／タイトル -->
+    <div>
+      <a href="/" class="text-2xl font-bold text-gray-900 dark:text-gray-100">
+        Peach Float
+      </a>
+    </div>
+
+    <!-- 中央：ナビゲーションリンク -->
+    <nav class="hidden md:flex space-x-6">
+      <a href="/series" class="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
+        Series
+      </a>
+      <a href="/characters" class="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
+        Characters
+      </a>
+      <a href="/about" class="text-gray-700 hover:text-gray-900 dark:text-gray-300 dark:hover:text-white">
+        About
+      </a>
+    </nav>
+
+    <!-- 右：ダークモード切替ボタン -->
+    <button id="theme-toggle" class="focus:outline-none">
+      <!-- ライトモード用アイコン（SVG） -->
+      <svg id="theme-toggle-light-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path d="M12 3v2m0 14v2m8.66-10H19m-14 0H3m..." />
+      </svg>
+      <!-- ダークモード用アイコン（SVG） -->
+      <svg id="theme-toggle-dark-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path d="M21.17 15.17A9 9 0 0112 3a9 9 0 000 18 9 ..." />
+      </svg>
+    </button>
+  </div>
+</header>

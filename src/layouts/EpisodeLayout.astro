@@ -1,0 +1,26 @@
+---
+// src/layouts/EpisodeLayout.astro
+import BaseLayout from "./BaseLayout.astro";
+const { title, date, cover } = Astro.props;
+---
+<BaseLayout>
+  <Fragment slot="title">{title} – Peach Float</Fragment>
+  <article class="mx-auto max-w-3xl px-4 py-12">
+    <div class="flex flex-col items-center">
+      <h1 class="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-4">{title}</h1>
+      <p class="text-sm text-gray-500 dark:text-gray-400">
+        {new Date(date).toLocaleDateString("ja-JP", {
+          year: "numeric",
+          month: "short",
+          day: "numeric"
+        })}
+      </p>
+      <div class="mt-6 w-full">
+        <img src={cover} alt={title} class="mx-auto rounded-lg shadow-lg" />
+      </div>
+    </div>
+    <div class="prose prose-lg mt-8 dark:prose-dark">
+      <slot /> <!-- Markdown の本文がここに入ります -->
+    </div>
+  </article>
+</BaseLayout>

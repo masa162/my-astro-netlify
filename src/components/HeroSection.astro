@@ -1,0 +1,31 @@
+---
+// src/components/HeroSection.astro
+---
+<section class="relative isolate overflow-hidden bg-peach-50 dark:bg-gray-800">
+  <div class="mx-auto max-w-5xl px-4 py-12 flex flex-col-reverse lg:flex-row items-center">
+    <!-- 左：テキストエリア -->
+    <div class="w-full lg:w-1/2 text-center lg:text-left">
+      <p class="text-sm font-semibold uppercase text-gray-500 dark:text-gray-400">
+        Latest Episode
+      </p>
+      <h1 class="mt-2 text-4xl font-bold text-gray-900 dark:text-white">
+        Reaoh Float
+      </h1>
+      <a
+        href="/episodes/reaoh-float"
+        class="mt-6 inline-block rounded-md bg-peach-500 px-5 py-3 text-base font-medium text-white hover:bg-peach-600 transition"
+      >
+        Read More
+      </a>
+    </div>
+
+    <!-- 右：ヒーロー用イメージ -->
+    <div class="w-full lg:w-1/2 mb-8 lg:mb-0 flex justify-center">
+      <img
+        src="/images/reaoh-float-hero.png"
+        alt="Reaoh Float"
+        class="rounded-lg shadow-lg w-[300px] md:w-[400px] lg:w-[500px]"
+      />
+    </div>
+  </div>
+</section>

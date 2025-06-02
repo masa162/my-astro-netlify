@@ -1,0 +1,30 @@
+[
+  {
+    "id": "semetiman",
+    "title": "Semetiman",
+    "date": "2025-04-29",
+    "cover": "/images/episodes/semetiman-cover.png",
+    "link": "/episodes/semetiman"
+  },
+  {
+    "id": "amashumi",
+    "title": "Amashumi",
+    "date": "2025-01-21",
+    "cover": "/images/episodes/amashumi-cover.png",
+    "link": "/episodes/amashumi"
+  },
+  {
+    "id": "huikutakuri",
+    "title": "Huikutakuri",
+    "date": "2025-01-29",
+    "cover": "/images/episodes/huikutakuri-cover.png",
+    "link": "/episodes/huikutakuri"
+  },
+  {
+    "id": "seven-fwo",
+    "title": "Seven-Fwo",
+    "date": "2019-01-18",
+    "cover": "/images/episodes/seven-fwo-cover.png",
+    "link": "/episodes/seven-fwo"
+  }
+]
