@@ -1,15 +1,16 @@
-# example netlify.toml
+# ──────────────── 修正後の netlify.toml ────────────────
 [build]
-  command = "astro build"
+  command   = "astro build"
   functions = "netlify/functions"
-  publish = "dist"
+  publish   = "dist"
 
-# --- 以下の行をコメントアウト／削除することで、Cypress テストをスキップします ---
+# ─ 以下のプラグイン関連設定はまるごと削除しました ─
 # [[plugins]]
 #   package = "netlify-plugin-cypress"
-
-  [plugins.inputs.postBuild]
-    enable = true
-  
-  [plugins.inputs]
-    enable = false
+#
+# [plugins.inputs.postBuild]
+#   enable = true
+#
+# [plugins.inputs]
+#   enable = false
+# ─────────────────────────────────────────────────────────
