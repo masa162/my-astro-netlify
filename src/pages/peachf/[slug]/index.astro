@@ -4,14 +4,14 @@ import ImageViewerIsland from '../../../components/ImageViewerIsland.jsx';
 import { getEntryBySlug, getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
-  const chapters = await getCollection('peachf');
+  const chapters = await getCollection("peachf");
   return chapters.map((entry) => ({
-    params: { slug: entry.slug }, // 例: "chapter001"
+    params: { slug: entry.slug },
   }));
 }
 
 const { slug } = Astro.params;
-const episode = await getEntryBySlug('peachf', slug);
+const episode = await getEntryBySlug("peachf", slug);
 if (!episode) throw new Error(`Chapter not found: ${slug}`);
 
 const { title, chapter, images } = episode.data;
