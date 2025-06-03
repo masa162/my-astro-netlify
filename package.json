@@ -16,6 +16,9 @@
     "typescript": "^5.4.4"
   },
   "dependencies": {
-    "cypress": "^13.7.3"
+    "@astrojs/react": "^4.3.0",
+    "cypress": "^13.7.3",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
   }
 }

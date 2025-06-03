@@ -1,17 +1,12 @@
 // astro.config.mjs
 import { defineConfig } from 'astro/config';
-// ① Tailwind Integration をインポート
 import tailwind from '@astrojs/tailwind';
+import react from '@astrojs/react'; // ← 追加：React統合のため
 
 export default defineConfig({
-  // ② integrations 配列に tailwind() を追加
   integrations: [
-    tailwind({
-      /* もし特別なオプションを渡したいならここに書きますが、
-         すでに tailwind.config.js を用意していれば
-         このまま空のオブジェクトで問題ありません */
-      // config: { /* tailwind.config.js の上書き用設定 */ }
-    }),
+    react(), // ← 追加：ReactをAstroに統合
+    tailwind(), // ← 既存のTailwind統合
   ],
-  // ここにその他の Astro 設定（もしあれば）を残します
+  // その他の設定をここに追加できます（必要に応じて）
 });
