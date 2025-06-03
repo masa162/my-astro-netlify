@@ -1,0 +1,29 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import ImageViewerIsland from '../../../components/ImageViewerIsland.jsx';
+import { getEntryBySlug, getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const chapters = await getCollection('peachf');
+  return chapters.map((entry) => ({
+    params: { slug: entry.slug }, // 例: "chapter001"
+  }));
+}
+
+const { slug } = Astro.params;
+const episode = await getEntryBySlug('peachf', slug);
+if (!episode) throw new Error(`Chapter not found: ${slug}`);
+
+const { title, chapter, images } = episode.data;
+const pageTitle = `${title} - 第${chapter}話`;
+---
+
+<BaseLayout title={pageTitle}>
+  <h1>{title} - 第{chapter}話</h1>
+  {images && images.length > 0 ? (
+    <ImageViewerIsland client:only="react" images={images} />
+  ) : (
+    <p>このチャプターには画像がありません。</p>
+  )}
+  <a href="/peachf/">シリーズトップに戻る</a>
+</BaseLayout>

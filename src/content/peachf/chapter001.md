@@ -5,5 +5,4 @@ chapter: 1
 images:
   - /manga/peachf/001/textq001.jpg
   - /manga/peachf/001/textq002.jpg
-layout: ../../../layouts/MangaViewerLayout.astro # ← この行を追加・確認
 ---

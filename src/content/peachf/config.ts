@@ -3,30 +3,30 @@ import { defineCollection, z } from 'astro:content';
 
 // 各チャプター共通のスキーマ（フロントマターの型定義）
 const chapterSchema = z.object({
-  title: z.string(),
-  date: z.date(),
-  images: z.array(z.string()),
-  chapter: z.number(),
-  layout: z.string(), // ← 追加: 各チャプターページが使用するレイアウトファイルへのパス
-  // 必要に応じて、あらすじ(description)、タグ(tags)などの共通フィールドを追加
-  // description: z.string().optional(),
-  // tags: z.array(z.string()).optional(),
+  title: z.string(),                     // チャプタータイトル
+  date: z.date(),                        // 公開日
+  chapter: z.number(),                   // 話数（数値）
+  images: z.array(z.string()),           // ページ画像の配列（相対パス）
+
+  // 必要に応じて以下を追加できます
+  // description: z.string().optional(),   // あらすじ
+  // tags: z.array(z.string()).optional(), // タグ一覧
 });
 
 // 「Peach Float」シリーズ用のコレクション
 const peachfCollection = defineCollection({
-  type: 'content', // Markdownファイルなので 'content'
-  schema: chapterSchema, // 上で定義した共通スキーマを利用
+  type: 'content',
+  schema: chapterSchema,
 });
 
 // 「Blue Moon Madness」シリーズ用のコレクション
 const bluemmCollection = defineCollection({
   type: 'content',
-  schema: chapterSchema, // こちらも共通スキーマを利用
+  schema: chapterSchema,
 });
 
+// 他シリーズを追加する場合はここに追記
 export const collections = {
-  'peachf': peachfCollection,
-  'bluemm': bluemmCollection,
-  // 今後新しいシリーズが増えたら、ここに追加していきます
+  peachf: peachfCollection,
+  bluemm: bluemmCollection,
 };
