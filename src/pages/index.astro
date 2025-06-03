@@ -3,27 +3,56 @@
 import Header from "../components/Header.astro";
 import HeroSection from "../components/HeroSection.astro";
 import EpisodesGrid from "../components/EpisodesGrid.astro";
+
+// 連載作品一覧セクション用のデータ（将来的にはコンテントコレクションなどから動的に取得することも可能です）
+const seriesList = [
+  { title: "Peach Float", slug: "peachf", description: "甘酸っぱい青春ストーリー！", coverImage: "/images/series/peachf_cover.png" }, // カバー画像は適宜用意してください
+  { title: "Blue Moon Madness", slug: "bluemm", description: "月の狂気が織りなすダークファンタジー。", coverImage: "/images/series/bluemm_cover.png" }, // カバー画像は適宜用意してください
+  // 他のシリーズがあればここに追加
+];
 ---
 <!DOCTYPE html>
 <html lang="ja" class="scroll-smooth">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Peach Float – Home</title>
-    <!-- ダークモード切替スクリプト -->
-    <script src="/theme-init.js" inline></script>
-  </head>
-  <body class="font-sans bg-peach-50 dark:bg-gray-900">
-    <!-- ① ヘッダー -->
-    <Header />
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Peach Float – Home</title>
+<script src="/theme-init.js" inline></script>
+</head>
+<body class="font-sans bg-peach-50 dark:bg-gray-900">
+<Header />
 
-    <!-- ② main 部分（pt-16 でヘッダーの高さ分余白をとる） -->
-    <main class="pt-16">
-      <!-- Hero セクション -->
-      <HeroSection />
+<main class="pt-16">
+  <HeroSection />
 
-      <!-- Episodes グリッド -->
-      <EpisodesGrid />
-    </main>
-  </body>
+  <section id="series-list" class="py-12 bg-white dark:bg-neutral-800"> {/* 背景色を少し調整 */}
+    <div class="mx-auto max-w-5xl px-4">
+      <h2 class="text-3xl font-bold mb-8 text-center text-gray-900 dark:text-white">連載作品</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {seriesList.map(series => (
+          <a href={`/${series.slug}/`} class="block p-6 bg-peach-50 dark:bg-gray-700 rounded-lg shadow-lg hover:shadow-xl transition-shadow group">
+            {series.coverImage && (
+              <div class="overflow-hidden rounded-md mb-4">
+                <img 
+                  src={series.coverImage} 
+                  alt={`${series.title} Cover`}
+                  class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300 ease-in-out" 
+                />
+              </div>
+            )}
+            <h3 class="text-2xl font-semibold text-peach-600 dark:text-peach-400 mb-2 group-hover:text-peach-700 dark:group-hover:text-peach-300">
+              {series.title}
+            </h3>
+            <p class="text-gray-700 dark:text-gray-300 text-sm">
+              {series.description}
+            </p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <EpisodesGrid />
+</main>
+</body>
 </html>

@@ -1,0 +1,28 @@
+---
+// src/pages/peachf/chapter001/index.astro
+import { getCollection, getEntry } from 'astro:content';
+import BaseLayout from '../../../../layouts/BaseLayout.astro'; // レイアウトへのパスは適宜調整してください
+import ImageViewerIsland from '../../../../components/ImageViewerIsland.jsx'; // ImageViewerIslandへのパス
+
+// getStaticPathsで各チャプターのページを生成
+export async function getStaticPaths() {
+  const allEpisodes = await getCollection('episode'); // 'episode'コレクションから全エピソード取得
+  return allEpisodes.map(entry => ({
+    params: { slug: entry.slug.split('/')[0], chapter: entry.slug.split('/')[1] }, // slugとchapterを抽出（要調整）
+    props: { episode: entry },
+  }));
+}
+
+const { episode } = Astro.props;
+const pages = episode.data.images; // 画像の配列を取得
+const pageTitle = `${episode.data.title} - ${episode.data.chapter}話`; // 例: ページタイトル
+---
+<BaseLayout title={pageTitle}>
+  <h1>{episode.data.title} - 第{episode.data.chapter}話</h1>
+  {pages && pages.length > 0 ? (
+    <ImageViewerIsland client:only="react" images={pages} />
+  ) : (
+    <p>このチャプターには画像がありません。</p>
+  )}
+  <a href={`/series/${episode.slug.split('/')[0]}/`}>シリーズトップに戻る</a>
+</BaseLayout>

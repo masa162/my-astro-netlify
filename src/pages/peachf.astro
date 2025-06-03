@@ -1,0 +1,36 @@
+---
+// src/pages/peachf.astro
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro'; // 共通レイアウトへのパス
+import EpisodeCard from '../components/EpisodeCard.astro'; // チャプター表示用カード (適宜調整)
+
+// 'peachf' コレクションから全チャプターを取得
+const allPeachfChapters = await getCollection('peachf');
+
+// チャプター番号でソート (昇順)
+const sortedChapters = allPeachfChapters.sort((a, b) => a.data.chapter - b.data.chapter);
+
+const seriesTitle = "Peach Float"; // シリーズタイトル
+---
+<BaseLayout title={seriesTitle}>
+  <div class="container mx-auto px-4 py-8">
+    <h1 class="text-4xl font-bold mb-2 text-center">{seriesTitle}</h1>
+    <p class="text-xl text-gray-600 dark:text-gray-300 mb-8 text-center">
+      「Peach Float」の全チャプター一覧です。
+    </p>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      {sortedChapters.map(chapter => (
+        <EpisodeCard
+          episode={{
+            url: `/peachf/${chapter.slug}/`, // 各チャプターへのリンク
+            title: `${seriesTitle} - ${chapter.data.title}`, // chapter.data.title が "第X話" などなら `${seriesTitle} ${chapter.data.title}`
+            // cover: chapter.data.cover || (chapter.data.images && chapter.data.images[0]) || '/images/default-cover.png',
+            // date: chapter.data.date, // 必要であれば日付も
+            // frontmatter: chapter.data, // EpisodeCard が frontmatter を直接参照する場合
+          }}
+        />
+      ))}
+    </div>
+  </div>
+</BaseLayout>
