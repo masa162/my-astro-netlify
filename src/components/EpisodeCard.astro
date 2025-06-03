@@ -1,27 +1,16 @@
 ---
 // src/components/EpisodeCard.astro
-// このコンポーネントが受け取るプロパティの型を定義します (TypeScriptを使用している場合)
-// interface Props {
-//   episode: {
-//     url: string;
-//     title: string;
-//     cover?: string; // カバー画像はオプション
-//     date?: Date;    // 日付もオプション
-//     // その他表示したい情報があれば追加
-//   };
-// }
-// const { episode } = Astro.props as Props;
-
-// JavaScriptのみの場合、または型をpropsで直接受け取る場合
-const { episode } = Astro.props; 
-// episodeオブジェクトには url, title, cover, dateなどのプロパティが含まれていると想定
+const { episode } = Astro.props;
+// episodeオブジェクトには url, title, cover, date, chapter などのプロパティが含まれていると想定
 ---
-<a href={episode.url} class="episode-card block border border-gray-200 dark:border-gray-700 rounded-lg shadow hover:shadow-md transition-shadow duration-200 overflow-hidden bg-white dark:bg-gray-800">
+<a href={episode.url} class="episode-card group block overflow-hidden rounded-lg border border-gray-200 bg-white shadow transition-shadow duration-200 hover:shadow-md dark:border-gray-700 dark:bg-gray-800">
   {episode.cover && (
-    <img src={episode.cover} alt={`${episode.title} Cover`} class="w-full h-32 sm:h-40 object-cover" />
+    <div class="overflow-hidden">
+      <img src={episode.cover} alt={`${episode.title} Cover`} class="h-32 w-full object-cover transition-transform duration-300 ease-in-out group-hover:scale-105 sm:h-40" />
+    </div>
   )}
   <div class="p-4">
-    <h3 class="text-lg font-semibold text-gray-900 dark:text-white mb-1 truncate" title={episode.title}>
+    <h3 class="mb-1 truncate text-lg font-semibold text-gray-900 group-hover:text-peach-600 dark:text-white dark:group-hover:text-peach-400" title={episode.title}>
       {episode.title}
     </h3>
     {episode.date && (
@@ -29,13 +18,13 @@ const { episode } = Astro.props;
         {new Date(episode.date).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' })}
       </p>
     )}
-    {/* ここにチャプター番号などを追加しても良いでしょう */}
+    {episode.chapter && ( 
+      <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">
+        Chapter: {episode.chapter}
+      </p>
+    )}
   </div>
 </a>
-
 <style>
-/* 必要に応じてスタイルを追加 */
-.episode-card:hover h3 {
-    color: var(--accent-regular); /* TailwindのテーマカラーやCSS変数を使うと良いでしょう */
-}
+/* 基本的にTailwindでスタイリング */
 </style>

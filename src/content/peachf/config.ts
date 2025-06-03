@@ -7,7 +7,10 @@ const chapterSchema = z.object({
   date: z.date(),
   images: z.array(z.string()),
   chapter: z.number(),
-  // 必要に応じて、あらすじ、タグなどの共通フィールドを追加
+  layout: z.string(), // ← 追加: 各チャプターページが使用するレイアウトファイルへのパス
+  // 必要に応じて、あらすじ(description)、タグ(tags)などの共通フィールドを追加
+  // description: z.string().optional(),
+  // tags: z.array(z.string()).optional(),
 });
 
 // 「Peach Float」シリーズ用のコレクション

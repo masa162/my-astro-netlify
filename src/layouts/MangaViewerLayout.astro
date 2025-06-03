@@ -1,0 +1,20 @@
+---
+// src/layouts/MangaViewerLayout.astro (例)
+import BaseLayout from './BaseLayout.astro'; // サイト全体の基本レイアウト
+import ImageViewerIsland from '../components/ImageViewerIsland.jsx'; // マンガビューアコンポーネント
+const { frontmatter } = Astro.props; // Markdownのフロントマターを受け取る
+---
+<BaseLayout title={`${frontmatter.seriesTitle || '作品'} - ${frontmatter.title}`}> {/* 必要に応じてシリーズタイトルも表示 */}
+  <main class="container mx-auto py-8 px-2">
+    <h1 class="text-3xl font-bold text-center mb-2">{frontmatter.title}</h1>
+    <p class="text-sm text-gray-500 text-center mb-6">Chapter: {frontmatter.chapter}</p>
+    {frontmatter.images && frontmatter.images.length > 0 ? (
+      <ImageViewerIsland client:only="react" images={frontmatter.images} />
+    ) : (
+      <p class="text-center">このチャプターには表示できる画像がありません。</p>
+    )}
+    <div class="mt-8 text-center">
+      <a href="/peachf/" class="text-peach-500 hover:underline">&laquo; 「Peach Float」チャプター一覧に戻る</a>
+    </div>
+  </main>
+</BaseLayout>
